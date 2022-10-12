@@ -39,6 +39,7 @@ Homestead.json
 .env.backup
 docker-compose.override.yml
 /.idea
+.idea
 /.vscode
 /.php-cs-fixer.cache
 /.phpstorm.meta.php
