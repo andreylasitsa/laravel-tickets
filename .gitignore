@@ -47,4 +47,5 @@ docker-compose.override.yml
 /public/js/
 /public/css/
 /docker/data/*
+composer.lock
 
