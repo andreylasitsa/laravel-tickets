@@ -48,4 +48,5 @@ docker-compose.override.yml
 /public/css/
 /docker/data/*
 composer.lock
+package-lock.json
 
