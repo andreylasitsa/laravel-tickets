@@ -17,12 +17,12 @@ class TicketController extends Controller
         $this->service = $service;
     }
 
-    public function index(): Response|JsonResponse
+    public function index(): JsonResponse
     {
         $tickets = $this->service->getAll();
         return !($tickets->isEmpty()) ?
             response()->setStatusCode(200)->json(['tickets' => $tickets]) :
-            response()->setStatusCode(404);
+            response()->setStatusCode(404)->json();
     }
 
     public function createTicket(Request $request): Response

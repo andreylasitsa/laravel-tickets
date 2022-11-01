@@ -21,8 +21,8 @@
         </style>
     </head>
     <body class="antialiased">
-        <div id="app">
-            <vue-component></vue-component>
+        <div id="form-component">
+            <form-component></form-component>
         </div>
     </body>
     <script src="{{ mix('js/app.js') }}"></script>
