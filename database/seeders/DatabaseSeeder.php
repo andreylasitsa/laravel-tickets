@@ -19,10 +19,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $sql_dumps = [
+        $mysql_dumps = [
             './database/files/users.sql',
             './database/files/statuses.sql',
         ];
+
+        $sqlite_dumps = [
+            './database/files/sqlite/users.sql',
+            './database/files/sqlite/statuses.sql',
+        ];
+
+        if(env('DB_CONNECTION') == 'sqlite')
+            $sql_dumps = $sqlite_dumps;
+        else
+            $sql_dumps = $mysql_dumps;
+
         foreach ($sql_dumps as $file) {
             $sql_dump = File::get($file);
             try {
