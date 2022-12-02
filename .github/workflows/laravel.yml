@@ -28,16 +28,16 @@ jobs:
           touch data/database.sqlite
       - name: Database migration
         env:
-          DATABASE_CONNECTION: sqlite
-          DATABASE_URL: data/database.sqlite
+          DB_CONNECTION: sqlite
+          DB_DATABASE: data/database.sqlite
         run: php artisan migrate
       - name: Database seeding
         env:
-          DATABASE_CONNECTION: sqlite
-          DATABASE_URL: data/database.sqlite
+          DB_CONNECTION: sqlite
+          DB_DATABASE: data/database.sqlite
         run: php artisan db:seed
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         env:
-          DATABASE_CONNECTION: sqlite
-          DATABASE_URL: data/database.sqlite
+          DB_CONNECTION: sqlite
+          DB_DATABASE: data/database.sqlite
         run: vendor/bin/phpunit
