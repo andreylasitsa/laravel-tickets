@@ -42,4 +42,9 @@ class UserRepository implements IUserRepository
         $user->delete();
         return $user;
     }
+
+    public function filter(string $field, $value): Collection
+    {
+        return $this->user->where($field, $value)->get();
+    }
 }

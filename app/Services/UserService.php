@@ -47,4 +47,9 @@ class UserService implements IUserService
         $this->repository->delete($id);
         return true;
     }
+
+    public function getByEmail(string $email): User
+    {
+        return $this->repository->filter('email', $email)->get(0);
+    }
 }

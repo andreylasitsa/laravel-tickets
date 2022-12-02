@@ -12,5 +12,6 @@ interface IUserService
     public function add(array $params): bool;
     public function update(int $id, array $params): bool;
     public function delete(int $id): bool;
+    public function getByEmail(string $email): User;
 
 }
