@@ -8,6 +8,6 @@ class PasswordService implements IPasswordService
 {
     public function encrypt(string $password): string
     {
-        return bcrypt($password);
+        return md5($password);
     }
 }
