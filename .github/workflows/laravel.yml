@@ -10,6 +10,19 @@ jobs:
   laravel-tests:
 
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+        ports:
+          - 32574:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      steps:
+        - name: Verify MySQL connection from host
+          run: |
+            sudo apt-get install -y mysql-client
+            mysql --host 127.0.0.1 --port 32574 -uroot -ppassword -e "SHOW DATABASES"
 
     steps:
       - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
@@ -27,30 +40,10 @@ jobs:
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         env:
           DB_DATABASE: laravel
-            DB_USERNAME: root
-            DB_PASSWORD: password
-            BROADCAST_DRIVER: log
-            CACHE_DRIVER: redis
-            QUEUE_CONNECTION: redis
-            SESSION_DRIVER: redis
+          DB_USERNAME: root
+          DB_PASSWORD: password
+          BROADCAST_DRIVER: log
+          CACHE_DRIVER: redis
+          QUEUE_CONNECTION: redis
+          SESSION_DRIVER: redis
         run: vendor/bin/phpunit
-    services:
-      mysql:
-        image: mysql:latest
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: false
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: laravel
-        ports:
-          - 3306/tcp
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
-      redis:
-        image: redis
-        ports:
-          - 6379/tcp
-        options: --health-cmd="redis-cli ping" --health-interval=10s --health-timeout=5s --health-retries=3
-      strategy:
-        fail-fast: false
-        matrix:
-          php-versions: [ '7.4', '8.0', '8.1' ]
