@@ -33,13 +33,13 @@ jobs:
           touch data/database.sqlite
       - name: Database migration
         env:
-          DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
+          DATABASE_URL: data/database.sqlite
         run: php artisan migrate
       - name: Database seeding
         env:
-          DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
+          DATABASE_URL: data/database.sqlite
         run: php artisan db:seed
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         env:
-          DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
+          DATABASE_URL: data/database.sqlite
         run: vendor/bin/phpunit
