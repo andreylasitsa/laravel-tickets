@@ -6,7 +6,9 @@ use App\Repositories\IFaces\IStatusRepository;
 use App\Repositories\IFaces\ITicketRepository;
 use App\Repositories\StatusRepository;
 use App\Repositories\TicketRepository;
+use App\Services\IFaces\IPasswordService;
 use App\Services\IFaces\ITicketService;
+use App\Services\PasswordService;
 use App\Services\TicketService;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
     public array $singletons = [
         ITicketRepository::class => TicketRepository::class,
         ITicketService::class => TicketService::class,
-        IStatusRepository::class => StatusRepository::class
+        IStatusRepository::class => StatusRepository::class,
+        IPasswordService::class => PasswordService::class
     ];
 
     /**
