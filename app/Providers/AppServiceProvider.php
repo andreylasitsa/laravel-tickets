@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Repositories\IFaces\IStatusRepository;
 use App\Repositories\IFaces\ITicketRepository;
+use App\Repositories\StatusRepository;
 use App\Repositories\TicketRepository;
 use App\Services\IFaces\ITicketService;
 use App\Services\TicketService;
@@ -12,7 +14,8 @@ class AppServiceProvider extends ServiceProvider
 {
     public array $singletons = [
         ITicketRepository::class => TicketRepository::class,
-        ITicketService::class => TicketService::class
+        ITicketService::class => TicketService::class,
+        IStatusRepository::class => StatusRepository::class
     ];
 
     /**

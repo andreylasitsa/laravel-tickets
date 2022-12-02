@@ -22,7 +22,7 @@ class TicketRepository implements ITicketRepository
 
     public function get(int $id): Ticket
     {
-        return $this->ticket->first($id);
+        return $this->ticket->find($id);
     }
 
     public function add(Ticket $ticket): int
